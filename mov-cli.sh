@@ -53,7 +53,6 @@ help_info () {
    	-p, --play
 	   Play a movie	
 	"
-	echo ""
 	printf "${NORMAL}"
 }
 
@@ -67,7 +66,7 @@ play_video () {
 	
 	printf "${CYAN}Please enter ${LPURPLE}video link.${NORMAL}\n"
 	read url
-	printf "${CYAN}${url}${NC}\n"
+	printf "${CYAN}Trying to run the movie: ${url}${NC}\n"
 	mpv $url
 
 }
@@ -75,7 +74,6 @@ play_video () {
 program_info () {
 
 	printf "${GREEN}This program was made by a humble programmer named Blaise Wynne${NORMAL}\n"
-
 
 }
 
