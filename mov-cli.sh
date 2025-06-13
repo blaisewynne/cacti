@@ -6,7 +6,7 @@ GREEN='\033[0;32m'
 
 NC='\033[0m'
 
-version=0.2
+version=0.3
 
 main () {
 	printf "${CYAN}[Mov-Cli] ${NC}\n"
@@ -26,6 +26,7 @@ main () {
 			version_info
 		;;
 		-p | --play | -play | play)
+			check_dependecies
 			play_video
 		;;
 		-i | --info | -info | info)
@@ -62,9 +63,21 @@ version_info () {
 
 }
 
+check_dependecies () {
+
+	printf "${GREEN}Checking dependecies...${NC}"
+	
+	for name in yt-dlp mpv
+		do 
+			[[ $(which $name 2>/dev/null) ]] || { echo -en "\n$name needs to be installed. Use 'sudo apt-get install $name'";deps=1; }
+		done
+[[ $deps -ne 1 ]] && printf "${CYAN}OK" || { echo -en "\n${LBLUE}Install the above package and rerun the script.${NC}\n";exit 1; }
+
+}
+
 play_video () {
 	
-	printf "${CYAN}Please enter ${LPURPLE}video link.${NORMAL}\n"
+	printf "\n${CYAN}Please enter ${LPURPLE}video link.${NORMAL}\n"
 	read url
 	printf "${CYAN}Trying to run the movie: ${url}${NC}\n"
 	mpv $url
