@@ -3,14 +3,13 @@ NORMAL='\033[0m'
 LBLUE='\033[0;34m'
 LPURPLE='\033[0;35m'
 GREEN='\033[0;32m'
-
 NC='\033[0m'
 
-version=0.3
+version=0.3.1
 
 main () {
 	printf "${CYAN}[Mov-Cli] ${NC}\n"
-	printf "${LBLUE}Search for a movie using the -p command:${NC}\n"
+	printf "${LBLUE}Search for a movie by typing 'play' below:${NC}\n"
 	read input
 	printf "${NORMAL}"
 	case $input in
@@ -71,7 +70,7 @@ check_dependecies () {
 		do 
 			[[ $(which $name 2>/dev/null) ]] || { echo -en "\n$name needs to be installed. Use 'sudo apt-get install $name'";deps=1; }
 		done
-[[ $deps -ne 1 ]] && printf "${CYAN}OK" || { echo -en "\n${LBLUE}Install the above package and rerun the script.${NC}\n";exit 1; }
+[[ $deps -ne 1 ]] && printf "OK" || { echo -en "\n${LBLUE}Install the above package and rerun the script.${NC}\n";exit 1; }
 
 }
 
@@ -80,7 +79,7 @@ play_video () {
 	printf "\n${CYAN}Please enter ${LPURPLE}video link.${NORMAL}\n"
 	read url
 	printf "${CYAN}Trying to run the movie: ${url}${NC}\n"
-	mpv $url
+	mpv $url > /dev/null
 
 }
 
