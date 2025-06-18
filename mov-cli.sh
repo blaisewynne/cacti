@@ -5,7 +5,7 @@ LPURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-version=0.3.2
+version=0.3.3
 
 main () {
 	printf "${CYAN}[Mov-Cli] ${NC}\n"
@@ -77,9 +77,17 @@ play_video () {
 	
 	printf "\n${CYAN}Please enter ${LPURPLE}video link.${NORMAL}\n"
 	read url
-	printf "${CYAN}Trying to run the movie: ${url}${NC}\n"
-	mpv $url > /dev/null
+	printf "${CYAN}Trying to run the movie: ${url}, this may take a while..${NC}\n"
+	movie_list
 
+}
+
+movie_list () {
+    if search=$(grep -i "$url" mov-list.txt); then
+        printf "Found $url"
+    else
+        printf "Could not find $url, try again"
+    fi
 }
 
 program_info () {
