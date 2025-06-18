@@ -5,7 +5,7 @@ LPURPLE='\033[0;35m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-version=0.3.1
+version=0.3.2
 
 main () {
 	printf "${CYAN}[Mov-Cli] ${NC}\n"
@@ -57,8 +57,7 @@ help_info () {
 }
 
 version_info () {
-	printf "${CYAN}Current Version:${LBLUE}$version\n"
-	printf "${NORMAL}"
+	printf "${CYAN}Current Version: ${LBLUE}$version${NC}\n"
 
 }
 
@@ -68,7 +67,7 @@ check_dependecies () {
 	
 	for name in yt-dlp mpv
 		do 
-			[[ $(which $name 2>/dev/null) ]] || { echo -en "\n$name needs to be installed. Use 'sudo apt-get install $name'";deps=1; }
+			[[ $(which $name 2>/dev/null) ]] || { echo -en "\n$name needs to be installed. Use your package manager to install $name'";deps=1; }
 		done
 [[ $deps -ne 1 ]] && printf "OK" || { echo -en "\n${LBLUE}Install the above package and rerun the script.${NC}\n";exit 1; }
 
@@ -85,7 +84,7 @@ play_video () {
 
 program_info () {
 
-	printf "${GREEN}This program was made by a humble programmer named Blaise Wynne${NORMAL}\n"
+	printf "${GREEN}This program was made by a humble programmer named Blaise Wynne.${NORMAL}\n"
 
 }
 
